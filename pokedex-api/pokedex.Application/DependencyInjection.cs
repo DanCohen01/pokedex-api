@@ -11,8 +11,8 @@ namespace pokedex.Application
         public static IServiceCollection AddAppplicationCore(this IServiceCollection services, IConfiguration configuration)
         {
          
-            services.AddTransient<IPokemonDescription, PokemonDescription>();
-            services.AddTransient<IPokemonTranslation, PokemonTranslation>();
+            services.AddScoped<IPokemonDescription, PokemonDescription>();
+            services.AddScoped<IPokemonTranslation, PokemonTranslation>();
             return services;
         }
     }

@@ -74,6 +74,24 @@ namespace pokedex.Application.Tests
 
         }
 
+        [Test]
+        public async Task Given_GetByName_Then_PokemonApiCalledOnce()
+        {
+            var pokemonName = "snorlax";
+            var pokemonApiProvider = Substitute.For<IPokeApiProvider>();
+            pokemonApiProvider.GetPokemonSpeciesByName(pokemonName).Returns(new PokemonSpecies()
+            {
+                Habitat = new Item() { Name = "some habitat" },
+                IsLegendary = false,
+                Name = pokemonName,
+                FlavorTextEntries = new System.Collections.Generic.List<FlavorTextEntry>(){new FlavorTextEntry(){
+            FlavorText = "some description", Language = new Item(){Name = "en"} } }
+            });
+            _testClass = new PokemonDescription(pokemonApiProvider, Substitute.For<IPokemonTranslation>());
+            var result = await _testClass.GetByName(pokemonName, false);
+            await pokemonApiProvider.Received(1).GetPokemonSpeciesByName(pokemonName);
+        }
+
 
     }
 }
