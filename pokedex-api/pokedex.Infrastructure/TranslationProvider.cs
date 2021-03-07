@@ -30,9 +30,7 @@ namespace pokedex.Infrastructure
             {
                 var requestUri = $"{_translationApiUrl}/{translationType}?text={input}";
                 var client = _httpClientFactory.CreateClient();
-             
                 var response = await client.GetAsync(requestUri);
-                var cont = await response.Content.ReadAsStringAsync();
                 using var responseStream = await response.Content.ReadAsStreamAsync();
                 var translation = await JsonSerializer.DeserializeAsync<Translation>(responseStream);
                 if (string.IsNullOrWhiteSpace(translation?.Contents?.Translated)) return input;
