@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
-namespace pokedex.Domain.InfrastructureModels
+namespace pokedex.Application.InfrastructureModels
 {
        
         public  class PokemonSpecies

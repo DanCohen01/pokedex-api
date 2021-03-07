@@ -4,7 +4,7 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace pokedex.Domain.InfrastructureModels
+namespace pokedex.Application.InfrastructureModels
 {
     public class Translation
     {

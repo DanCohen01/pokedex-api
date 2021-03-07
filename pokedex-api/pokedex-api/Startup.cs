@@ -5,8 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using pokedex.Application;
-using pokedex.Domain.Configuration;
-using pokedex.Domain.Interfaces;
+using pokedex.Application.Configuration;
+using pokedex.Application.Interfaces;
 using pokedex.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -21,13 +21,18 @@ namespace pokedex.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
+          
             services.AddControllers();
             services.Configure<ExternalProviderSettings>(options => Configuration.GetSection("ExternalProviders").Bind(options));
-            services.AddTransient<IPokemonDescription, PokemonDescription>();
-            services.AddSingleton<IPokeApiProvider, PokeApiProvider>();
-            services.AddSingleton<ITranslationProvider, TranslationProvider>();
+            services.AddAppplicationCore(Configuration);
+            services.AddInfrastructure(Configuration);
             services.AddHttpClient();
           
         }

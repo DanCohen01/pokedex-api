@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace pokedex.Domain.Configuration
+namespace pokedex.Application.Configuration
 {
     public class ExternalProviderSettings
     {

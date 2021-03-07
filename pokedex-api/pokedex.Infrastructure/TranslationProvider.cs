@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using pokedex.Domain.Configuration;
-using pokedex.Domain.Enums;
-using pokedex.Domain.InfrastructureModels;
-using pokedex.Domain.Interfaces;
+using pokedex.Application.Configuration;
+using pokedex.Application.Enums;
+using pokedex.Application.InfrastructureModels;
+using pokedex.Application.Interfaces;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -21,20 +21,22 @@ namespace pokedex.Infrastructure
         public TranslationProvider(IHttpClientFactory clientFactory, IOptions<ExternalProviderSettings> externalProviderSettings)
         {
             _httpClientFactory = clientFactory;
-            _translationApiUrl = externalProviderSettings.Value.FunTranslationsUrl;
+            _translationApiUrl = externalProviderSettings.Value.FunTranslationsApiUrl;
         }
         public async Task<string> TranslateByTranslationType(string input, TranslationType translationType)
         {
 
             try
             {
-
-                var client = _httpClientFactory.CreateClient(_translationApiUrl);
-                var data = new StringContent(input, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(translationType.ToString(),data);
+                var requestUri = $"{_translationApiUrl}/{translationType}?text={input}";
+                var client = _httpClientFactory.CreateClient();
+             
+                var response = await client.GetAsync(requestUri);
+                var cont = await response.Content.ReadAsStringAsync();
                 using (var responseStream = await response.Content.ReadAsStreamAsync())
                 {
                     var translation = await JsonSerializer.DeserializeAsync<Translation>(responseStream);
+                    if (string.IsNullOrWhiteSpace(translation?.Contents?.Translated)) return input;
                     return translation?.Contents?.Translated;
                 }
 

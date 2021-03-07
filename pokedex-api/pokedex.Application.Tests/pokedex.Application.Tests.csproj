@@ -1,27 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NSubstitute" Version="4.2.2" />
-    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\pokedex.Application\pokedex.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Update="C:\Users\danco\.nuget\packages\netstandard.library\2.0.3\build\netstandard2.0\ref\netstandard.dll">
-      <SpecificVersion>True</SpecificVersion>
-      <Private>True</Private>
-    </Reference>
+    <ProjectReference Include="..\pokedex.Infrastructure\pokedex.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

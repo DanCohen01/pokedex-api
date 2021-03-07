@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.Extensions.Options;
-using pokedex.Domain.Configuration;
-using pokedex.Domain.InfrastructureModels;
-using pokedex.Domain.Interfaces;
+using pokedex.Application.Configuration;
+using pokedex.Application.InfrastructureModels;
+using pokedex.Application.Interfaces;
 using Serilog;
 using System;
 using System.Net.Http;
@@ -29,14 +29,18 @@ namespace pokedex.Infrastructure
         {
             try
             {
+                var requestUri = $"{_pokemonApiUrl}/pokemon-species/{pokemonName}";
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.GetAsync(requestUri);
 
-                var client = _httpClientFactory.CreateClient(_pokemonApiUrl);
-                var response = await client.GetAsync($"species/{pokemonName}");
-                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    var species = await JsonSerializer.DeserializeAsync<PokemonSpecies>(responseStream);
-                    return species;
+                    return null;
                 }
+
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                var species = await JsonSerializer.DeserializeAsync<PokemonSpecies>(responseStream);
+                return species;
 
             }
             catch (Exception e)
