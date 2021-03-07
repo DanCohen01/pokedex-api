@@ -17,11 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F8D3CD0F-EE6F-47EF-8E07-2459472B9C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokedex.Domain", "pokedex.Domain\pokedex.Domain.csproj", "{1CBD9353-CF5D-4169-8AFA-C798BC6F180A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex.Domain", "pokedex.Domain\pokedex.Domain.csproj", "{1CBD9353-CF5D-4169-8AFA-C798BC6F180A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokedex.Application", "pokedex.Application\pokedex.Application.csproj", "{5390DADC-C504-4D1D-986B-2EB633DA0782}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex.Application", "pokedex.Application\pokedex.Application.csproj", "{5390DADC-C504-4D1D-986B-2EB633DA0782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokedex.Infrastructure", "pokedex.Infrastructure\pokedex.Infrastructure.csproj", "{E5A3CEEA-268D-4806-80B1-47D90955C7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex.Infrastructure", "pokedex.Infrastructure\pokedex.Infrastructure.csproj", "{E5A3CEEA-268D-4806-80B1-47D90955C7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokedex.Application.Tests", "pokedex.Application.Tests\pokedex.Application.Tests.csproj", "{51D3341F-DAEC-43D1-878F-D68669AEB421}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E5A3CEEA-268D-4806-80B1-47D90955C7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A3CEEA-268D-4806-80B1-47D90955C7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A3CEEA-268D-4806-80B1-47D90955C7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D3341F-DAEC-43D1-878F-D68669AEB421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D3341F-DAEC-43D1-878F-D68669AEB421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D3341F-DAEC-43D1-878F-D68669AEB421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D3341F-DAEC-43D1-878F-D68669AEB421}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,25 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using pokedex.Domain.Objects;
+using pokedex.Domain.Interfaces;
+using pokedex.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace pokedex_api
+namespace pokedex.Api
 {
     [Route("pokemon")]
-    public class PokemonController : ControllerBase 
+    public class PokemonController : ControllerBase
     {
-        [HttpGet, Route("{pokemonName}")]
-        public async Task<ActionResult<Pokemon>> PokemonDescription([FromRoute]string pokemonName)
+        IPokemonDescription _pokemonDescription;
+
+        public PokemonController(IPokemonDescription pokemonDescription)
         {
-            return await Task.FromResult(Ok(pokemonName));
+            _pokemonDescription = pokemonDescription;
+        }
+
+        [HttpGet, Route("{pokemonName}")]
+        public async Task<ActionResult<Pokemon>> PokemonDescription([FromRoute] string pokemonName)
+        {
+            var pokemonDescription = await _pokemonDescription.GetByName(pokemonName);
+            if (pokemonDescription is UnknownPokemon)
+            {
+                return NotFound(pokemonDescription);
+            }
+
+            return Ok(pokemonDescription);
         }
 
         [HttpGet, Route("translated/{pokemonName}")]
         public async Task<ActionResult<Pokemon>> PokemonDescriptionWithTranslation([FromRoute] string pokemonName)
         {
-            return await Task.FromResult(Ok());
+            var pokemonDescription = await _pokemonDescription.GetByName(pokemonName, translateDescription: true);
+            if (pokemonDescription is UnknownPokemon)
+            {
+                return NotFound(pokemonDescription);
+            }
+
+            return Ok(pokemonDescription);
         }
     }
 }

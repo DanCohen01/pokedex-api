@@ -2,17 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>pokedex_api</RootNamespace>
+    <RootNamespace>pokedex.Api</RootNamespace>
     <UserSecretsId>9cd5d208-db72-4afe-a44d-d016641ca38d</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Enrichers.Demystify" Version="1.0.0-dev-00019" />
+    <PackageReference Include="Serilog.Exceptions" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\pokedex.Application\pokedex.Application.csproj" />
     <ProjectReference Include="..\pokedex.Domain\pokedex.Domain.csproj" />
+    <ProjectReference Include="..\pokedex.Infrastructure\pokedex.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

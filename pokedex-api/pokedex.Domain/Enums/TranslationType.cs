@@ -6,8 +6,8 @@ namespace pokedex.Domain.Enums
 {
     public enum TranslationType
     {
-        Original = 0,
-        Yoda = 1,
-        Shakespeare = 2,
+        original = 0,
+        yoda = 1,
+        shakespeare = 2,
     }
 }

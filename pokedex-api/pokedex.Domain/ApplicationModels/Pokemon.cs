@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace pokedex.Domain.Objects
+namespace pokedex.Domain.Models
 {
     public class Pokemon
     {
