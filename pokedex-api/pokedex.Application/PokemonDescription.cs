@@ -14,8 +14,8 @@ namespace pokedex.Application
 {
     public class PokemonDescription : IPokemonDescription
     {
-        IPokeApiProvider _pokeApiProvider;
-        IPokemonTranslation _pokemonTranslation;
+        private readonly IPokeApiProvider _pokeApiProvider;
+        private readonly IPokemonTranslation _pokemonTranslation;
 
         public PokemonDescription(IPokeApiProvider pokeApiProvider, IPokemonTranslation pokemonTranslation)
         {

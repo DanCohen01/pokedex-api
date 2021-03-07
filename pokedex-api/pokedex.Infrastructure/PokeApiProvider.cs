@@ -14,8 +14,8 @@ namespace pokedex.Infrastructure
 {
     public class PokeApiProvider : IPokeApiProvider
     {
-        private IHttpClientFactory _httpClientFactory;
-        private string _pokemonApiUrl;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _pokemonApiUrl;
 
         public PokeApiProvider(IHttpClientFactory clientFactory, IOptions<ExternalProviderSettings> externalProviderSettings)
         {

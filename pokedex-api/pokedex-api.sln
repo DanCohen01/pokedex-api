@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex.API", "pokedex-api\pokedex.API.csproj", "{0BA277DA-B896-4B71-BFA3-496989B5953D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex.API", "pokedex.Api\pokedex.API.csproj", "{0BA277DA-B896-4B71-BFA3-496989B5953D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{080C266C-913F-4C33-9B35-5D0421FCC63D}"
 EndProject

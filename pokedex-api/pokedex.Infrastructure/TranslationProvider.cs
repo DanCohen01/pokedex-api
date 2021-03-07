@@ -15,8 +15,8 @@ namespace pokedex.Infrastructure
 {
     public class TranslationProvider : ITranslationProvider
     {
-        private IHttpClientFactory _httpClientFactory;
-        private string _translationApiUrl;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _translationApiUrl;
 
         public TranslationProvider(IHttpClientFactory clientFactory, IOptions<ExternalProviderSettings> externalProviderSettings)
         {
@@ -33,12 +33,10 @@ namespace pokedex.Infrastructure
              
                 var response = await client.GetAsync(requestUri);
                 var cont = await response.Content.ReadAsStringAsync();
-                using (var responseStream = await response.Content.ReadAsStreamAsync())
-                {
-                    var translation = await JsonSerializer.DeserializeAsync<Translation>(responseStream);
-                    if (string.IsNullOrWhiteSpace(translation?.Contents?.Translated)) return input;
-                    return translation?.Contents?.Translated;
-                }
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                var translation = await JsonSerializer.DeserializeAsync<Translation>(responseStream);
+                if (string.IsNullOrWhiteSpace(translation?.Contents?.Translated)) return input;
+                return translation?.Contents?.Translated;
 
             }
             catch (Exception e)

@@ -11,7 +11,7 @@ namespace pokedex.Application
 {
     public class PokemonTranslation : IPokemonTranslation
     {
-        ITranslationProvider _translationProvider;
+        private readonly ITranslationProvider _translationProvider;
 
         public PokemonTranslation(ITranslationProvider translationProvider)
         {

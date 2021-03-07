@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using pokedex.Application;
 using pokedex.Application.Configuration;
 using pokedex.Application.Interfaces;
@@ -34,7 +35,23 @@ namespace pokedex.Api
             services.AddAppplicationCore(Configuration);
             services.AddInfrastructure(Configuration);
             services.AddHttpClient();
-          
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Pokedex API",
+                    Description = "API to return information about pokemon",
+                    
+
+                });
+                
+               
+            });
+            services.AddOpenApiDocument(settings =>
+            {
+                settings.Title = "Pokedex API";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +61,15 @@ namespace pokedex.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
             app.UseRouting();
+
+            app.UseOpenApi();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pokedex API V1");
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
