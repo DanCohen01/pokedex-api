@@ -5,7 +5,7 @@ Pokedex API
 How to run:
 
 * Clone repository
-* Run via IIS express
+* Run via IIS express or via Docker
 * The App is configured to launch the swagger page when started, so you can use the swagger ui, call one of either two endpoints by adding to the url after the port number in a browser or use a tool like postman.
 	*  /pokemon/{pokemon_name} ie: (pokemon/snorlax)
 	*  /pokemon/translated/{pokemon_name} ie: (pokemon/translated/snorlax)

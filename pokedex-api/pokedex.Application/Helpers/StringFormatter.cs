@@ -8,9 +8,8 @@ namespace pokedex.Application.Helpers
     {
         public static string FormatString(string input)
         {
-            var formatted = input;
-            formatted = formatted?.Replace("\n", " ");
-            formatted = formatted?.Replace("\f", " ");
+           
+            var formatted = input?.Replace("\n", " ").Replace("\f", " ");
             return formatted;
         }
     }
